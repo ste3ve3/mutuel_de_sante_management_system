@@ -1,19 +1,3 @@
-/**
-=========================================================
-* Soft UI Dashboard React - v4.0.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
-// prop-types is a library for typechecking of props
 import PropTypes from "prop-types";
 
 // @mui material components
@@ -33,14 +17,6 @@ import Footer from "layouts/authentication/components/Footer";
 function CoverLayout({ color, header, title, description, image, top, children }) {
   return (
     <PageLayout background="white">
-      <DefaultNavbar
-        action={{
-          type: "external",
-          route: "https://appseed.us/product/node-js-react-soft-dashboard",
-          label: "free download",
-          color: "dark",
-        }}
-      />
       <Grid
         container
         justifyContent="center"
@@ -49,9 +25,9 @@ function CoverLayout({ color, header, title, description, image, top, children }
           margin: 0,
         }}
       >
-        <Grid item xs={11} sm={8} md={5} xl={3}>
-          <SoftBox mt={top}>
-            <SoftBox pt={3} px={3}>
+        <Grid item xs={12} sm={8} md={5} xl={4}>
+          <SoftBox mt={15}>
+            <SoftBox>
               {!header ? (
                 <>
                   <SoftBox mb={1}>
@@ -67,12 +43,12 @@ function CoverLayout({ color, header, title, description, image, top, children }
                 header
               )}
             </SoftBox>
-            <SoftBox p={3}>{children}</SoftBox>
+            <SoftBox>{children}</SoftBox>
           </SoftBox>
         </Grid>
         <Grid item xs={12} md={5}>
           <SoftBox
-            height="100%"
+            height="150%"
             display={{ xs: "none", md: "block" }}
             position="relative"
             right={{ md: "-12rem", xl: "-16rem" }}
@@ -95,7 +71,6 @@ function CoverLayout({ color, header, title, description, image, top, children }
           </SoftBox>
         </Grid>
       </Grid>
-      <Footer />
     </PageLayout>
   );
 }
@@ -105,7 +80,7 @@ CoverLayout.defaultProps = {
   header: "",
   title: "",
   description: "",
-  color: "info",
+  color: "primary",
   top: 20,
 };
 

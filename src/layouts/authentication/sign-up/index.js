@@ -96,61 +96,39 @@ function SignUp() {
         </Card>
       ) : (
         <Card>
-          <SoftBox p={3} mb={1} textAlign="center">
-            <SoftTypography variant="h5" fontWeight="medium">
-              Register with
+          <SoftBox p={3} textAlign="center">
+            <SoftTypography variant="h3" fontWeight="bold" textGradient>
+              Login
+            </SoftTypography>
+            <SoftTypography variant="body2" fontWeight="regular" color="text" mt={1}>
+              Enter your admin credentials to continue
             </SoftTypography>
           </SoftBox>
-          <SoftBox display="flex" flexDirection="column" alignItems="center" mb={2}>
-            <GithubSocial />
-          </SoftBox>
-          <Separator />
-          <SoftBox pt={2} pb={3} px={3}>
-            <SoftBox component="form" role="form">
-              <SoftBox mb={2}>
-                <SoftInput
-                  type="text"
-                  name="username"
-                  placeholder="Name"
-                  onChange={handleFormData}
-                />
+            <SoftBox component="form" role="form"  px={4}>
+              <SoftBox mb={2} mt={1}>
+                <SoftBox mb={1} ml={0.5}>
+                  <SoftTypography component="label" variant="caption" fontWeight="bold">
+                    Email
+                  </SoftTypography>
+                </SoftBox>
+                <SoftInput type="email" name="email" value={formData?.email} onChange={handleFormData} placeholder="Email" />
               </SoftBox>
               <SoftBox mb={2}>
-                <SoftInput
-                  type="email"
-                  name="email"
-                  onChange={handleFormData}
-                  placeholder="Email"
-                />
-              </SoftBox>
-              <SoftBox mb={2}>
+                <SoftBox mb={1} ml={0.5}>
+                  <SoftTypography component="label" variant="caption" fontWeight="bold">
+                    Password
+                  </SoftTypography>
+                </SoftBox>
                 <SoftInput
                   type="password"
                   name="password"
                   onChange={handleFormData}
                   placeholder="Password"
+                  value={formData?.password}
                 />
-              </SoftBox>
-              <SoftBox display="flex" alignItems="center">
-                <Checkbox checked={agreement} onChange={handleSetAgremment} />
-                <SoftTypography
-                  variant="button"
-                  fontWeight="regular"
-                  onClick={handleSetAgremment}
-                  sx={{ cursor: "poiner", userSelect: "none" }}
-                >
-                  &nbsp;&nbsp;I agree the&nbsp;
-                </SoftTypography>
-                <SoftTypography
-                  component="a"
-                  href="#"
-                  variant="button"
-                  fontWeight="bold"
-                  textGradient
-                >
-                  Terms and Conditions
-                </SoftTypography>
-              </SoftBox>
+              </SoftBox> 
+            </SoftBox>
+            <SoftBox  pb={3} px={4}>
               <SoftBox mt={2} mb={2} textAlign="center">
                 <h6
                   style={{
@@ -166,26 +144,10 @@ function SignUp() {
               </SoftBox>
               <SoftBox mt={4} mb={1}>
                 <SoftButton variant="gradient" color="dark" onClick={handleSubmit} fullWidth>
-                  sign up
+                  sign in
                 </SoftButton>
               </SoftBox>
-              <SoftBox mt={3} textAlign="center">
-                <SoftTypography variant="button" color="text" fontWeight="regular">
-                  Already have an account?&nbsp;
-                  <SoftTypography
-                    component={Link}
-                    to="/authentication/sign-in"
-                    variant="button"
-                    color="dark"
-                    fontWeight="bold"
-                    textGradient
-                  >
-                    Sign in
-                  </SoftTypography>
-                </SoftTypography>
               </SoftBox>
-            </SoftBox>
-          </SoftBox>
         </Card>
       )}
     </BasicLayout>

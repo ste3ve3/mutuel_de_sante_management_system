@@ -1,18 +1,3 @@
-/**
-=========================================================
-* Soft UI Dashboard React - v4.0.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 // @mui material components
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
@@ -30,19 +15,87 @@ import borders from "assets/theme/base/borders";
 // Images
 import masterCardLogo from "assets/images/logos/mastercard.png";
 import visaLogo from "assets/images/logos/visa.png";
+import Transaction from "../Transaction"; 
+import { useState } from "react";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
+import {
+  Menu,
+  MenuItem,
+} from "@mui/material"
 
 function PaymentMethod() {
   const { borderWidth, borderColor } = borders;
 
+  function RenderMenu({ menu, openMenu, closeMenu }) {
+    return (
+      <Menu
+        id="simple-menu"
+        anchorEl={menu}
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "left",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+        open={Boolean(menu)}
+        onClose={closeMenu}
+      >
+         <MenuItem onClick={closeMenu}>
+          <ListItemIcon>
+            <EditIcon fontSize="small" />
+          </ListItemIcon>
+          Edit
+        </MenuItem>
+        <MenuItem onClick={closeMenu}>
+          <ListItemIcon>
+            <DeleteIcon fontSize="small" />
+          </ListItemIcon>
+          Delete
+        </MenuItem>
+      </Menu>
+    );
+  }
+  
+  function RenderMenuWrapper() {
+    const [menu, setMenu] = useState(null);
+  
+    const openMenu = ({ currentTarget }) => setMenu(currentTarget);
+    const closeMenu = () => setMenu(null);
+  
+    return (
+      <SoftTypography
+        component="div"
+        variant="caption"
+        color="secondary"
+        fontWeight="medium"
+      >
+        <SoftBox color="text" px={2}>
+          <Icon
+            sx={{ cursor: "pointer", fontWeight: "bold" }}
+            fontSize="small"
+            onClick={openMenu}
+          >
+            more_vert
+          </Icon>
+        </SoftBox>
+        <RenderMenu menu={menu} openMenu={openMenu} closeMenu={closeMenu} />
+      </SoftTypography>
+    );
+  }
+
   return (
-    <Card id="delete-account">
-      <SoftBox pt={2} px={2} display="flex" justifyContent="space-between" alignItems="center">
+    <Card id="delete-account" sx={{ p: 2}}>
+      <SoftBox pt={2} px={2} mb={3} display="flex" justifyContent="space-between" alignItems="center">
         <SoftTypography variant="h6" fontWeight="medium">
-          Payment Method
+          Available Trainings
         </SoftTypography>
         <SoftButton variant="gradient" color="dark">
           <Icon sx={{ fontWeight: "bold" }}>add</Icon>
-          &nbsp;add new card
+          &nbsp;add new training
         </SoftButton>
       </SoftBox>
       <SoftBox p={2}>
@@ -54,19 +107,19 @@ function PaymentMethod() {
               display="flex"
               justifyContent="space-between"
               alignItems="center"
-              p={3}
+              px={3}
+              py={1}
+              sx={{ listStyle: "none" }}
             >
-              <SoftBox component="img" src={masterCardLogo} alt="master card" width="10%" mr={2} />
               <SoftTypography variant="h6" fontWeight="medium">
-                ****&nbsp;&nbsp;****&nbsp;&nbsp;****&nbsp;&nbsp;7852
+                <Transaction
+                  color="dark"
+                  index="1"
+                  name="Stones and Clay Training"
+                  description="26 March 2023 - 28 March 2023"
+                />
               </SoftTypography>
-              <SoftBox ml="auto" lineHeight={0}>
-                <Tooltip title="Edit Card" placement="top">
-                  <Icon sx={{ cursor: "pointer" }} fontSize="small">
-                    edit
-                  </Icon>
-                </Tooltip>
-              </SoftBox>
+              <RenderMenuWrapper />
             </SoftBox>
           </Grid>
           <Grid item xs={12} md={6}>
@@ -76,19 +129,107 @@ function PaymentMethod() {
               display="flex"
               justifyContent="space-between"
               alignItems="center"
-              p={3}
+              px={3}
+              py={1}
+              sx={{ listStyle: "none" }}
             >
-              <SoftBox component="img" src={visaLogo} alt="master card" width="10%" mr={2} />
               <SoftTypography variant="h6" fontWeight="medium">
-                ****&nbsp;&nbsp;****&nbsp;&nbsp;****&nbsp;&nbsp;5248
+                <Transaction
+                  color="dark"
+                  index="2"
+                  name="Software Development Training"
+                  description="26 March 2023 - 28 March 2023"
+                />
               </SoftTypography>
-              <SoftBox ml="auto" lineHeight={0}>
-                <Tooltip title="Edit Card" placement="top">
-                  <Icon sx={{ cursor: "pointer" }} fontSize="small">
-                    edit
-                  </Icon>
-                </Tooltip>
-              </SoftBox>
+              <RenderMenuWrapper />
+            </SoftBox>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <SoftBox
+              border={`${borderWidth[1]} solid ${borderColor}`}
+              borderRadius="lg"
+              display="flex"
+              justifyContent="space-between"
+              alignItems="center"
+              px={3}
+              py={1}
+              sx={{ listStyle: "none" }}
+            >
+              <SoftTypography variant="h6" fontWeight="medium">
+                <Transaction
+                  color="dark"
+                  index="3"
+                  name="Artificial Intelligence Training"
+                  description="26 March 2023 - 28 March 2023"
+                />
+              </SoftTypography>
+              <RenderMenuWrapper />
+            </SoftBox>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <SoftBox
+              border={`${borderWidth[1]} solid ${borderColor}`}
+              borderRadius="lg"
+              display="flex"
+              justifyContent="space-between"
+              alignItems="center"
+              px={3}
+              py={1}
+              sx={{ listStyle: "none" }}
+            >
+              <SoftTypography variant="h6" fontWeight="medium">
+                <Transaction
+                  color="dark"
+                  index="4"
+                  name="Engineering Training"
+                  description="26 March 2023 - 28 March 2023"
+                />
+              </SoftTypography>
+              <RenderMenuWrapper />
+            </SoftBox>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <SoftBox
+              border={`${borderWidth[1]} solid ${borderColor}`}
+              borderRadius="lg"
+              display="flex"
+              justifyContent="space-between"
+              alignItems="center"
+              px={3}
+              py={1}
+              sx={{ listStyle: "none" }}
+            >
+              <SoftTypography variant="h6" fontWeight="medium">
+                <Transaction
+                  color="dark"
+                  index="5"
+                  name="GIS and Geotechnical Training"
+                  description="26 March 2023 - 28 March 2023"
+                />
+              </SoftTypography>
+              <RenderMenuWrapper />
+            </SoftBox>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <SoftBox
+              border={`${borderWidth[1]} solid ${borderColor}`}
+              borderRadius="lg"
+              display="flex"
+              justifyContent="space-between"
+              alignItems="center"
+              px={3}
+              py={1}
+              sx={{ listStyle: "none" }}
+            >
+              <SoftTypography variant="h6" fontWeight="medium">
+                <Transaction
+                  color="dark"
+                  index="6"
+                  name="Business Administration Training"
+                  description="26 March 2023 - 28 March 2023"
+                />
+              </SoftTypography>
+              <RenderMenuWrapper />
             </SoftBox>
           </Grid>
         </Grid>

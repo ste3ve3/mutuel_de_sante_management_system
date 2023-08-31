@@ -30,11 +30,6 @@ const reportsBarChartData = {
       progress: { content: "2M", percentage: 90 },
     },
     {
-      icon: { color: "warning", component: "payment" },
-      label: "sales",
-      progress: { content: "$435", percentage: 30 },
-    },
-    {
       icon: { color: "error", component: "extension" },
       label: "items",
       progress: { content: "43", percentage: 50 },

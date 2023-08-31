@@ -1,15 +1,15 @@
 {
-  "name": "soft-ui-dashboard-react",
+  "name": "e_learning_platform_dashboard",
   "version": "4.0.0",
-  "author": "Creative Tim",
+  "author": "Flipside Ltd",
   "license": "SEE LICENSE IN <https://www.creative-tim.com/license>",
-  "description": "ReactJS version of Soft UI Dashboard by Creative Tim",
+  "description": "Admin dashboard for the Flipside Hosting Solution",
   "bugs": {
-    "url": "https://github.com/app-generator/react-soft-ui-dashboard/issues"
+    "url": "https://github.com/FlipSide23/flipside_hosting_dashboard"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/app-generator/react-soft-ui-dashboard.git"
+    "url": "git+https://github.com/FlipSide23/flipside_hosting_dashboard.git"
   },
   "engines": {
     "node": "14 || 15 || 16",

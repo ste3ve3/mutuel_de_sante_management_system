@@ -24,14 +24,14 @@ import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
 import SoftButton from "components/SoftButton";
 
-function Transaction({ color, icon, name, description, value }) {
+function Transaction({ color, index, name, description, value }) {
   return (
-    <SoftBox key={name} component="li" py={1} pr={2} mb={1}>
+    <SoftBox key={name} component="li" py={1} pr={2}>
       <SoftBox display="flex" justifyContent="space-between" alignItems="center">
         <SoftBox display="flex" alignItems="center">
           <SoftBox mr={2}>
             <SoftButton variant="outlined" color={color} size="small" iconOnly circular>
-              <Icon sx={{ fontWeight: "bold" }}>{icon}</Icon>
+                {index}
             </SoftButton>
           </SoftBox>
           <SoftBox display="flex" flexDirection="column">

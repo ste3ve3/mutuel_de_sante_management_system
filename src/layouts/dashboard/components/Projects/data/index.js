@@ -47,16 +47,20 @@ export default function data() {
 
   return {
     columns: [
-      { name: "companies", align: "left" },
-      { name: "members", align: "left" },
+      { name: "Training Date", align: "left" },
+      { name: "trainees", align: "left" },
       { name: "budget", align: "center" },
       { name: "completion", align: "center" },
     ],
 
     rows: [
       {
-        companies: [logoXD, "Soft UI XD Version"],
-        members: (
+        "Training Date": (
+          <SoftTypography variant="caption" color="text" fontWeight="medium">
+            14th Jan - 30 Feb
+          </SoftTypography>
+        ),
+        trainees: (
           <SoftBox display="flex" py={1}>
             {avatars([
               [team1, "Ryan Tompson"],
@@ -78,8 +82,12 @@ export default function data() {
         ),
       },
       {
-        companies: [logoAtlassian, "Add Progress Track"],
-        members: (
+        "Training Date": (
+          <SoftTypography variant="caption" color="text" fontWeight="medium">
+            14th Jan - 30 Feb
+          </SoftTypography>
+        ),
+        trainees: (
           <SoftBox display="flex" py={1}>
             {avatars([
               [team2, "Romina Hadid"],
@@ -99,8 +107,12 @@ export default function data() {
         ),
       },
       {
-        companies: [logoSlack, "Fix Platform Errors"],
-        members: (
+        "Training Date": (
+          <SoftTypography variant="caption" color="text" fontWeight="medium">
+            14th Jan - 30 Feb
+          </SoftTypography>
+        ),
+        trainees: (
           <SoftBox display="flex" py={1}>
             {avatars([
               [team1, "Ryan Tompson"],
@@ -120,8 +132,12 @@ export default function data() {
         ),
       },
       {
-        companies: [logoSpotify, "Launch our Mobile App"],
-        members: (
+        "Training Date": (
+          <SoftTypography variant="caption" color="text" fontWeight="medium">
+            14th Jan - 30 Feb
+          </SoftTypography>
+        ),
+        trainees: (
           <SoftBox display="flex" py={1}>
             {avatars([
               [team4, "Jessica Doe"],
@@ -143,8 +159,12 @@ export default function data() {
         ),
       },
       {
-        companies: [logoJira, "Add the New Pricing Page"],
-        members: (
+        "Training Date": (
+          <SoftTypography variant="caption" color="text" fontWeight="medium">
+            14th Jan - 30 Feb
+          </SoftTypography>
+        ),
+        trainees: (
           <SoftBox display="flex" py={1}>
             {avatars([[team4, "Jessica Doe"]])}
           </SoftBox>
@@ -161,8 +181,12 @@ export default function data() {
         ),
       },
       {
-        companies: [logoInvesion, "Redesign New Online Shop"],
-        members: (
+        "Training Date": (
+          <SoftTypography variant="caption" color="text" fontWeight="medium">
+            14th Jan - 30 Feb
+          </SoftTypography>
+        ),
+        trainees: (
           <SoftBox display="flex" py={1}>
             {avatars([
               [team1, "Ryan Tompson"],
