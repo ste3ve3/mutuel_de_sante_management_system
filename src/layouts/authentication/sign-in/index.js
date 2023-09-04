@@ -41,7 +41,7 @@ import AuthApi from "../../../api/auth";
 
 import { useAuth } from "auth-context/auth.context";
 
-function SignUp() {
+function SignIn() {
   const navigate = useNavigate();
 
   const [agreement, setAgremment] = useState(true);
@@ -147,4 +147,4 @@ function SignUp() {
   );
 }
 
-export default SignUp;
+export default SignIn;
