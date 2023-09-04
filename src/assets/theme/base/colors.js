@@ -24,7 +24,7 @@ const colors = {
   },
 
   primary: {
-    main: "#7D3C32",
+    main: "#cb0c9f",
     focus: "#ad0a87",
   },
 
@@ -34,7 +34,7 @@ const colors = {
   },
 
   info: {
-    main: "#7D3C32",
+    main: "#17c1e8",
     focus: "#3acaeb",
   },
 
@@ -87,8 +87,8 @@ const colors = {
     },
 
     info: {
-      main: "#7D3C32",
-      state: "#7D3C32",
+      main: "#2152ff",
+      state: "#21d4fd",
     },
 
     success: {
@@ -112,8 +112,8 @@ const colors = {
     },
 
     dark: {
-      main: "#7D3C32",
-      state: "#7D3C32",
+      main: "#141727",
+      state: "#3a416f",
     },
   },
 

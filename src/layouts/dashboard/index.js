@@ -5,6 +5,7 @@ import Icon from "@mui/material/Icon";
 // Soft UI Dashboard React components
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
+import { useState, useEffect } from "react";
 
 // Soft UI Dashboard React examples
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
@@ -26,10 +27,34 @@ import OrderOverview from "layouts/dashboard/components/OrderOverview";
 // Data
 import reportsBarChartData from "layouts/dashboard/data/reportsBarChartData";
 import gradientLineChartData from "layouts/dashboard/data/gradientLineChartData";
+import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';  
 
-function Dashboard() {
+import { getAllSponsors } from "store/actions/sponsor";
+import { getAllUsers } from "store/actions/user";
+import { connect } from 'react-redux';
+import { useFetcher } from "apiFetch";
+import UsersReport from "./components/UsersReport";
+import SponsorsReport from "./components/SponsorsReport";
+
+function Dashboard({users, getUsers, sponsors, getSponsors }) {
   const { size } = typography;
   const { chart, items } = reportsBarChartData;
+
+  const { data: allSponsors, isError: sponsorsError, isLoading: sponsorsLoading } = useFetcher('/sponsor');
+  const { data: allUsers, isError: usersError, isLoading: usersLoading } = useFetcher('/person');
+
+  useEffect(() => {
+    if (allUsers?.data?.length) {
+        getUsers({ users: allUsers?.data });
+    }
+
+    if (allSponsors?.data?.length) {
+      getSponsors({ sponsors: allSponsors?.data });
+    }
+}, [allUsers?.data?.length, allSponsors?.data?.length]);
+
+const usersWithSponsors = users?.filter((user) => user?.hasSponsor)
+const usersWithoutSponsors = users?.filter((user) => !user?.hasSponsor)
 
   return (
     <DashboardLayout>
@@ -37,54 +62,37 @@ function Dashboard() {
       <SoftBox py={3}>
         <SoftBox mb={3}>
           <Grid container spacing={3}>
-            <Grid item xs={12} sm={6} xl={4}>
+            <Grid item xs={12} sm={6} xl={6}>
               <MiniStatisticsCard
-                title={{ text: "Available Trainings" }}
-                count="10"
-                icon={{ color: "info", component: "celebration" }}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6} xl={4}>
-              <MiniStatisticsCard
-                title={{ text: "Registered users" }}
-                count="50"
+                title={{ text: "All Underprivileged People" }}
+                count={users?.length}
                 icon={{ color: "info", component: "people_outline" }}
               />
             </Grid>
-            <Grid item xs={12} sm={6} xl={4}>
+            <Grid item xs={12} sm={6} xl={6}>
               <MiniStatisticsCard
-                title={{ text: "Training manuals" }}
-                count="50"
-                icon={{ color: "info", component: "adjust" }}
+                title={{ text: "Available Sponsors" }}
+                count={sponsors?.length}
+                icon={{ color: "info", component: "volunteer_activism" }}
               />
             </Grid>
-            <Grid item xs={12} sm={6} xl={4}>
+            <Grid item xs={12} sm={6} xl={6}>
               <MiniStatisticsCard
-                title={{ text: "Offered Certificates" }}
-                count="100"
+                title={{ text: "The Underprivileged with Sponsors" }}
+                count={usersWithSponsors?.length}
                 icon={{
                   color: "info",
-                  component: "redeem",
+                  component: "people_outline",
                 }}
               />
             </Grid>
-            <Grid item xs={12} sm={6} xl={4}>
+            <Grid item xs={12} sm={6} xl={6}>
               <MiniStatisticsCard
-                title={{ text: "Partners" }}
-                count="2"
+                title={{ text: "The Underprivileged Without Sponsors" }}
+                count={usersWithoutSponsors?.length}
                 icon={{
                   color: "info",
-                  component: "handshake",
-                }}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6} xl={4}>
-              <MiniStatisticsCard
-                title={{ text: "Courses" }}
-                count="2"
-                icon={{
-                  color: "info",
-                  component: "book",
+                  component: "people_outline",
                 }}
               />
             </Grid>
@@ -92,7 +100,10 @@ function Dashboard() {
         </SoftBox>
         <Grid container spacing={3}>
           <Grid item xs={12}>
-            <Projects />
+            <UsersReport />
+          </Grid>
+          <Grid item xs={10}>
+            <SponsorsReport />
           </Grid>
         </Grid>
       </SoftBox>
@@ -100,4 +111,16 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+const mapStateToProps = (state) => ({
+  users: state.user.users,
+  sponsors: state.sponsor.sponsors,
+});
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+      getUsers: (data) => dispatch(getAllUsers(data)),
+      getSponsors: (data) => dispatch(getAllSponsors(data)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

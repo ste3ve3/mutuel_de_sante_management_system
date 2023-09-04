@@ -2,15 +2,10 @@
 import Dashboard from "layouts/dashboard";
 import Tables from "layouts/tables";
 import Billing from "layouts/billing";
-import Profile from "layouts/profile";
-import SignUp from "layouts/authentication/sign-up";
-import SignOut from "layouts/authentication/sign-out";
-
-// Soft UI Dashboard React icons
+import SignIn from "layouts/authentication/sign-in";
 import Shop from "examples/Icons/Shop";
-import CustomerSupport from "examples/Icons/CustomerSupport";
-import CreditCard from "examples/Icons/CreditCard";
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
+import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';  
 
 const routes = [
   {
@@ -25,9 +20,9 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Users",
-    key: "users",
-    route: "/users",
+    name: "Underprivileged",
+    key: "underprivileged",
+    route: "/underprivileged",
     icon: <PeopleAltIcon size="12px" />,
     component: <Tables />,
     noCollapse: true,
@@ -35,27 +30,17 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Trainings",
-    key: "trainings",
-    route: "/trainings",
-    icon: <CreditCard size="12px" />,
+    name: "Sponsors",
+    key: "sponsors",
+    route: "/sponsors",
+    icon: <VolunteerActivismIcon size="12px" />,
     component: <Billing />,
     noCollapse: true,
     protected: true,
   },
   {
-    type: "collapse",
-    name: "Courses",
-    key: "courses",
-    route: "/courses",
-    icon: <CustomerSupport size="12px" />,
-    component: <Profile />,
-    noCollapse: true,
-    protected: true,
-  }, 
-  {
     route: "/login",
-    component: <SignUp />,
+    component: <SignIn />,
   },
 ];
 

@@ -57,9 +57,26 @@ function DashboardNavbar({ absolute, light, isMini }) {
   const [openMenu, setOpenMenu] = useState(false);
   const route = useLocation().pathname.split("/").slice(1);
   const navigate = useNavigate();
+  const [loggedInUser, setLoggedInUser] = useState(localStorage.getItem("loggedInUser"))
 
   const { user } = useAuth();
   const { setUser } = useAuth();
+
+  useEffect(() => {
+    setLoggedInUser(localStorage.getItem("loggedInUser"))
+  }, [])
+
+  useEffect(() => {
+    if(!loggedInUser) {
+      navigate("/login")
+    }
+  }, [loggedInUser])
+
+  const handleLogout = (e) => {
+    e.preventDefault()
+    localStorage.removeItem("loggedInUser")
+    navigate("/login")
+  }
 
 
   useEffect(() => {
@@ -92,13 +109,6 @@ function DashboardNavbar({ absolute, light, isMini }) {
   const handleConfiguratorOpen = () => setOpenConfigurator(dispatch, !openConfigurator);
   const handleOpenMenu = (event) => setOpenMenu(event.currentTarget);
   const handleCloseMenu = () => setOpenMenu(false);
-
-  const handleLogout = () => {
-    AuthApi.Logout(user);
-    setUser(null);
-    localStorage.removeItem("user");
-    return navigate("/login");
-  };
 
   // Render the notifications menu
   const renderMenu = () => (
@@ -158,7 +168,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
               />
             </SoftBox>
             <SoftBox color={light ? "white" : "inherit"}>
-              {user && user.token ? (
+              {loggedInUser ? (
               <IconButton
                 size="small"
                 color="inherit"
@@ -168,6 +178,13 @@ function DashboardNavbar({ absolute, light, isMini }) {
                 variant="contained"
                 onClick={handleLogout}
               >
+                <Icon
+                    sx={({ palette: { dark, white } }) => ({
+                      color: light ? white.main : dark.main,
+                    })}
+                  >
+                    login
+                </Icon>
                 <SoftTypography
                     variant="button"
                     fontWeight="medium"

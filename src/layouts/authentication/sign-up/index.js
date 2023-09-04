@@ -59,25 +59,18 @@ function SignUp() {
     });
   };
 
+  const handleRedirect = () => navigate("/dashboard");
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    AuthApi.Register(formData)
-      .then((response) => {
-        if (response.data.success) {
-          return navigate("/authentication/sign-in");
-        } else {
-          setError(response.data.msg);
-        }
-      })
-      .catch((error) => {
-        if (error.response) {
-          return setError(error.response.data.msg);
-        }
-        return setError("There has been an error.");
-      });
+    if(formData.email !== "mutuelmanagementsystem@gmail.com" && formData.password !== "Sonia@1234") {
+      setError("Invalid login credential!")
+      return
+    }
+    localStorage.setItem("loggedInUser", JSON.stringify(formData));
+    handleRedirect()
   };
 
-  const handleRedirect = () => navigate("/dashboard");
 
   return (
     <BasicLayout

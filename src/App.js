@@ -27,6 +27,7 @@ import createCache from "@emotion/cache";
 // Soft UI Dashboard React routes
 import routes from "./routes";
 import { ProtectedRoute } from "./ProtectedRoute";
+import { Toaster } from "react-hot-toast"; 
 
 // Soft UI Dashboard React contexts
 import { useSoftUIController, setMiniSidenav, setOpenConfigurator } from "context";
@@ -131,7 +132,7 @@ export default function App() {
           <Sidenav
             color={sidenavColor}
             brand={brand}
-            brandName="Admin Portal"
+            brandName=""
             routes={routes}
             onMouseEnter={handleOnMouseEnter}
             onMouseLeave={handleOnMouseLeave}
@@ -143,6 +144,13 @@ export default function App() {
         {getRoutes(routes)}
         <Route path="*" element={<Navigate to="/dashboard" />} />
       </Routes>
+      <Toaster
+        toastOptions={{
+          style: {
+            fontSize: "16px"
+          },
+        }}
+      />
     </ThemeProvider>
   );
 }
