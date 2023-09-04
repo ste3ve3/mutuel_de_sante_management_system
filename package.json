@@ -12,7 +12,7 @@
     "url": "git+https://github.com/ste3ve3/mutuel_de_sante_management_system.git"
   },
   "engines": {
-    "node": "18",
+    "node": "14 || 15 || 16 || 18",
     "npm": ">=6"
   },
   "build": {
